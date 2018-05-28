@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+    int total = ViewBag.PageTotal;
+    int index = ViewBag.PageIndex;
+    int limit = 5;
+    //int indexDec = index - 1;
+    //int indexInc = index + 1;
+    string query = ViewBag.Query == "" ? "" : $"&{ViewBag.Query}";
+}
+
+<div class="pagination pagination-centered" >
+    <ul class="pagination">
+        @if (ViewBag.HasPreViousPage == true)
+        {
+            <li><a href="@ViewBag.PageUrl?page=1">&laquo;</a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#">&laquo;</a></li>
+        }
+        @for (var i = 1; i <= total; i++)
+        {
+            if (i >= index - limit && i <= index + limit)
+            {
+                if (index == i)
+                {
+                    <li class="active"><a href="@ViewBag.PageUrl?page=@i@query">@i</a></li>
+                }
+                else
+                {
+                    <li><a href="@ViewBag.PageUrl?page=@i@query">@i</a></li>
+                }
+            }
+        }
+        @if (ViewBag.HasNextPage == true)
+        {
+            <li><a href="@ViewBag.PageUrl?page=@total">&raquo;</a></li>
+        }
+        else
+        {
+            <li class="disabled"><a href="#">&raquo;</a></li>
+        }
+        <li class="disabled"><a href="#">共 @ViewBag.PageCount 条</a></li>
+    </ul>
+</div>
+<p></p>

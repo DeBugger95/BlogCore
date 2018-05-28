@@ -1,0 +1,6 @@
+﻿
+@{
+    Layout = null;
+}
+
+<span style="color:red;">@((string)ViewData["ErrorMessage"] == null ? "" : $"({ViewData["ErrorMessage"]})")</span>

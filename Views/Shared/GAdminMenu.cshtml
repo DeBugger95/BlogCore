@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="span3">
+    <div class="sidebar">
+        <ul class="widget widget-menu unstyled">
+            <li class="@ViewData["GAdmin"]">
+                <a href="/gadmin">
+                    <i class="menu-icon icon-dashboard"></i>Post Dashboard
+                </a>
+            </li>
+            <li class="@ViewData["PostM"]">
+                <a href="/postm">
+                    <i class="menu-icon icon-bold"></i>Post Manage
+                </a>
+            </li>
+            <li class="@ViewData["CategoryM"]">
+                <a href="/categorym">
+                <i class="menu-icon icon-tasks"></i>Category Manage
+                </a>
+            </li>
+        </ul>
+        <ul class="widget widget-menu unstyled">
+            <li><a href="/account/logout"><i class="menu-icon icon-signout"></i>Logout </a></li>
+        </ul>
+    </div>
+</div>

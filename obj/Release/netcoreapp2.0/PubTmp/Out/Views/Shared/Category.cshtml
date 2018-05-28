@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="sidebar-widget">
+    <h3 class="sidebar-title">热门分类</h3>
+    <div class="widget-container">
+        <ul>
+            @foreach (var item in ViewBag.Categorys)
+            {
+                <li><a href="/post/index?category=@item">@item</a></li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+﻿
+@{
+    string[] strs = { "★", "★", "★", "★", "★" };
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <title>Blog(Index)</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="~/css/jquery.bxslider.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">LQH</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            @Html.Partial("Navbar")
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <a href="index.html"><img src="~/images/logo.png"></a>
+        </header>
+        <section class="main-slider">
+            <ul class="bxslider">
+                @foreach (var item in ViewBag.StochasticPosts)
+                {
+                    <li><div class="slider-item"><img src="@item.ImgPath" /><h2><a href="/post/detail?pid=@item.Id" title="@item.Title">@item.Title</a></h2></div></li>
+                }
+            </ul>
+        </section>
+        <section>
+            <div class="row">
+                <div class="col-md-8">
+                    @foreach (var item in ViewBag.LatestPosts)
+                    {
+                        <article class="blog-post">
+                            <div class="blog-post-image">
+                                <a href="/post/detail?pid=@item.Id"><img src="@item.ImgPath" alt=""></a>
+                            </div>
+                            <div class="blog-post-body">
+                                <h2>@item.Title</h2>
+                                <div class="post-meta"><span>发布时间：@item.PostDate</span>/<span>浏览量：@item.Views</span>/<span>难度：@string.Join("", strs, 0, item.Difficulty)</span>/<span>推荐度：@string.Join("", strs, 0, item.Recommend)</span></div>
+                                <div class="txt">@Html.Raw(item.ShortContent)</div>
+                                <div class="read-more"><a href="/post/detail?pid=@item.Id">Continue Reading</a></div>
+                            </div>
+                        </article>
+                    }
+                </div>
+                <div class="col-md-4 sidebar-gutter">
+                    <aside>
+                        <!-- sidebar-widget -->
+                        @Html.Partial("AboutMe")
+                        <!-- sidebar-widget -->
+                        <div class="sidebar-widget">
+                            <h3 class="sidebar-title">热门文章</h3>
+                            <div class="widget-container">
+                                @foreach (var item in ViewBag.HotPosts)
+                                {
+                                    <article class="widget-post">
+                                        <div class="post-image">
+                                            <a href="/post/detail?pid=@item.Id"><img src="@item.ImgPath" alt=""></a>
+                                        </div>
+                                        <div class="post-body">
+                                            <h2><a href="/post/detail?pid=@item.Id">@item.Title</a></h2>
+                                            <div class="post-meta">
+                                                <span>发布时间：@item.PostDate</span><p></p>
+                                                <span>浏览量：@item.Views</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                }
+                            </div>
+                        </div>
+                        <!-- sidebar-widget -->
+                        <div class="sidebar-widget">
+                            <h3 class="sidebar-title">社交</h3>
+                            <div class="widget-container">
+                                <div class="widget-socials">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                                    <a href="#"><i class="fa fa-reddit"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- sidebar-widget -->
+                        @Html.Partial("Category")
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div><!-- /.container -->
+
+    @Html.Partial("Footer")
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.bxslider.js"></script>
+    <script src="~/js/mooz.scripts.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
